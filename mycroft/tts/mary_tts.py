@@ -29,8 +29,9 @@ class MaryTTS(RemoteTTS):
     }
 
     def __init__(self, lang, config):
-        super(MaryTTS, self).__init__(lang, config, '/process',
-                                      MaryTTSValidator(self))
+        url=config.get('url', 'http://localhost:59125')
+        super(MaryTTS, self).__init__(lang, config, url, 
+                                      '/process', MaryTTSValidator(self))
 
     def build_request_params(self, sentence):
         params = self.PARAMS.copy()
